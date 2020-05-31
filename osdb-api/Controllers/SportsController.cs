@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.Runtime;
+using OsdbApi.Services;
 
 namespace OsdbApi.Controllers
 {
@@ -10,26 +9,24 @@ namespace OsdbApi.Controllers
 	[ApiController]
 	public class SportsController : ControllerBase
 	{
-		private const string TABLE_NAME = "osdb";
-		// GET api/sports/getById/1
-		[HttpGet("{id}")]
-		public ActionResult<Model.Sport> GetById(int id)
+		private readonly SportsService _sportsService;
+		public SportsController(SportsService sportsService)
 		{
-			try
+			_sportsService = sportsService;
+		}
+
+		public ActionResult<List<Models.Sport>> GetAll() => _sportsService.Get();
+
+		// GET api/sports/getById/<string>
+		[HttpGet("{id:length(24)}")]
+		public ActionResult<Models.Sport> GetById(string id)
+		{
+			var sport = _sportsService.Get(id);
+			if (sport == null)
 			{
-				using var client = new AmazonDynamoDBClient(new EnvironmentVariablesAWSCredentials(), Amazon.RegionEndpoint.USEast1);
-				var tables = client.ListTablesAsync().Result;
-				if (!tables.TableNames.Contains(TABLE_NAME))
-				{
-					throw new AmazonDynamoDBException("No suitable table found");
-				}
-				using var dynamoDb = new DynamoDBContext(client);
-				return dynamoDb.LoadAsync<Model.Sport>(1).Result;
+				return NotFound();
 			}
-			catch (Exception e)
-			{
-				throw e;
-			}
+			return sport;
 		}
 	}
 }

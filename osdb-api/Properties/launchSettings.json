@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/Sports/getById/1",
+      "launchUrl": "api/Sports/getById/5ed36e3d6861382acedd2b34",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

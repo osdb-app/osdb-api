@@ -1,13 +1,14 @@
-﻿using Amazon.DynamoDBv2.DataModel;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace OsdbApi.Model
+namespace OsdbApi.Models
 {
-	[DynamoDBTable("osdb")]
 	public class Sport
 	{
-		[DynamoDBHashKey]
-		public int sportId { get; set; }
-		public string name { get; set; }
-		public string organizingBody { get; set; }
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
+		public string Name { get; set; }
+		public string OrganizingBody { get; set; }
 	}
 }
