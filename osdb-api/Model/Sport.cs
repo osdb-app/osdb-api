@@ -10,5 +10,6 @@ namespace OsdbApi.Models
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string OrganizingBody { get; set; }
+		public string DbName { get; set; }
 	}
 }
