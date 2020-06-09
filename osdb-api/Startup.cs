@@ -34,6 +34,7 @@ namespace OsdbApi
 			// Per the official Mongo Client reuse guidelines, MongoClient should be registered in DI with a singleton service lifetime.
 			services.AddSingleton<SportsService>();
 			services.AddSingleton<Soccer.CountriesService>();
+			services.AddSingleton<Soccer.LeaguesService>();
 
 			services.AddControllers();
 		}

@@ -1,13 +1,7 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace OsdbApi.Models
+﻿namespace OsdbApi.Models
 {
-	public class Sport
+	public class Sport: CollectionEntry
 	{
-		[BsonId]
-		[BsonRepresentation(BsonType.ObjectId)]
-		public string Id { get; set; }
 		public string Name { get; set; }
 		public string OrganizingBody { get; set; }
 		public string DbName { get; set; }
