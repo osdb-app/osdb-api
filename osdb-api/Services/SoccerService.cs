@@ -6,18 +6,18 @@ using System.Linq;
 
 namespace OsdbApi.Services
 {
-	public class SportsService
+	public class SoccerService
 	{
 		private readonly IMongoCollection<Sport> _sports;
 
-		public SportsService(Models.DbSettings.OsdbDbSettings settings)
+		public SoccerService(Models.DbSettings.OsdbSoccerDbSettings settings)
 		{
 			var connectionStr = settings.ConnectionString.Replace("<" + settings.EnvironmentVariables.MongoDbUser + ">", Environment.GetEnvironmentVariable(settings.EnvironmentVariables.MongoDbUser));
 			connectionStr = connectionStr.Replace("<" + settings.EnvironmentVariables.MongoDbPassword + ">", Environment.GetEnvironmentVariable(settings.EnvironmentVariables.MongoDbPassword));
 			var client = new MongoClient(connectionStr);
 			var database = client.GetDatabase(settings.DatabaseName);
 
-			_sports = database.GetCollection<Sport>(settings.Collections.Sports);
+			//_sports = database.GetCollection<Sport>(settings.Collections.Sports);
 		}
 
 		public List<Sport> Get() =>

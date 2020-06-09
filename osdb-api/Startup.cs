@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using OsdbApi.Models;
+using OsdbApi.Models.DbSettings;
 using OsdbApi.Services;
 
 namespace OsdbApi
@@ -21,16 +21,17 @@ namespace OsdbApi
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// requires using Microsoft.Extensions.Options
-			services.Configure<MongoDbSettings>(
-				Configuration.GetSection(nameof(MongoDbSettings)));
+			services.Configure<OsdbDbSettings>(Configuration.GetSection(nameof(OsdbDbSettings)));
+			services.AddSingleton(sp => sp.GetRequiredService<IOptions<OsdbDbSettings>>().Value);
 
-			services.AddSingleton<IMongoDbSettings>(sp =>
-				sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+			services.Configure<OsdbSoccerDbSettings>(Configuration.GetSection(nameof(OsdbSoccerDbSettings)));
+			services.AddSingleton(sp => sp.GetRequiredService<IOptions<OsdbSoccerDbSettings>>().Value);
 
 			// The SportsService class is registered with DI to support constructor injection in consuming classes.
 			// The singleton service lifetime is most appropriate because SportsService takes a direct dependency on MongoClient.
 			// Per the official Mongo Client reuse guidelines, MongoClient should be registered in DI with a singleton service lifetime.
-		   services.AddSingleton<SportsService>();
+			services.AddSingleton<SportsService>();
+			services.AddSingleton<SoccerService>();
 
 			services.AddControllers();
 		}
@@ -50,10 +51,7 @@ namespace OsdbApi
 
 			app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
+			app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 		}
 	}
 }
