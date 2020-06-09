@@ -2,9 +2,9 @@
 
 namespace OsdbApi.Services.Soccer
 {
-	public class RolesService : SoccerServiceBase<Models.Soccer.Player>
+	public class RolesService : SoccerServiceBase<Models.Soccer.Role>
 	{
-		public RolesService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Players)
+		public RolesService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Roles)
 		{
 		}
 	}

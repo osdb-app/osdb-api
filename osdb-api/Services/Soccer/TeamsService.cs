@@ -2,9 +2,9 @@
 
 namespace OsdbApi.Services.Soccer
 {
-	public class TeamsService : SoccerServiceBase<Models.Soccer.Player>
+	public class TeamsService : SoccerServiceBase<Models.Soccer.Team>
 	{
-		public TeamsService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Players)
+		public TeamsService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Teams)
 		{
 		}
 	}

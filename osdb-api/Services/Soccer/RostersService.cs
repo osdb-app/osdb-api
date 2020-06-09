@@ -2,9 +2,9 @@
 
 namespace OsdbApi.Services.Soccer
 {
-	public class RostersService : SoccerServiceBase<Models.Soccer.Player>
+	public class RostersService : SoccerServiceBase<Models.Soccer.Roster>
 	{
-		public RostersService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Players)
+		public RostersService(OsdbSoccerDbSettings settings) : base(settings, settings.Collections.Rosters)
 		{
 		}
 	}
