@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osdb-api", "osdb-api\osdb-api.csproj", "{46E23382-A2EC-43A9-B930-E4EFC4D6F155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osdb-api", "osdb-api\osdb-api.csproj", "{46E23382-A2EC-43A9-B930-E4EFC4D6F155}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DE0C4830-00A3-4B48-97DD-F38ADDD2EE9F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

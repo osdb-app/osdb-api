@@ -6,6 +6,8 @@ using Microsoft.Extensions.Options;
 using OsdbApi.Models.DbSettings;
 using OsdbApi.Services;
 
+using Soccer = OsdbApi.Services.Soccer;
+
 namespace OsdbApi
 {
 	public class Startup
@@ -31,7 +33,7 @@ namespace OsdbApi
 			// The singleton service lifetime is most appropriate because SportsService takes a direct dependency on MongoClient.
 			// Per the official Mongo Client reuse guidelines, MongoClient should be registered in DI with a singleton service lifetime.
 			services.AddSingleton<SportsService>();
-			services.AddSingleton<SoccerService>();
+			services.AddSingleton<Soccer.CountriesService>();
 
 			services.AddControllers();
 		}
