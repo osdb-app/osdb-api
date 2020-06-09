@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using OsdbApi.Models.Soccer;
 using OsdbApi.Services.Soccer;
@@ -9,21 +7,19 @@ namespace OsdbApi.Controllers.Soccer
 {
 	[Route("api/soccer/[controller]/[action]")]
 	[ApiController]
-	public class CountriesController : ControllerBase
+	public class CountriesController : OsdbControllerBase<CountriesService>
 	{
-		private readonly CountriesService _countriesService;
-		public CountriesController(CountriesService countriesService)
+		public CountriesController(CountriesService service): base(service)
 		{
-			_countriesService = countriesService;
 		}
 
-		public ActionResult<List<Country>> GetAll() => _countriesService.Get();
+		public ActionResult<List<Country>> GetAll() => _service.Get();
 
 		// GET api/soccer/countries/getById/<string>
 		[HttpGet("{id:length(24)}")]
 		public ActionResult<Country> GetById(string id)
 		{
-			var country = _countriesService.Get(id);
+			var country = _service.Get(id);
 			if (country == null)
 			{
 				return NotFound();
