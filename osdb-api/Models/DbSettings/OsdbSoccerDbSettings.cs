@@ -15,11 +15,12 @@ namespace OsdbApi.Models.DbSettings
 
 	public class OsdbSoccerCollections
 	{
-		public string CoachStats { get; set; }
+		public string Coaches { get; set; }
 		public string Countries { get; set; }
 		public string Formations { get; set; }
 		public string Leagues { get; set; }
-		public string PlayerStats { get; set; }
+		public string People { get; set; }
+		public string Players { get; set; }
 		public string Positions { get; set; }
 		public string Roles { get; set; }
 		public string Rosters { get; set; }

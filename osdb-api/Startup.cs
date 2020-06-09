@@ -29,12 +29,16 @@ namespace OsdbApi
 			services.Configure<OsdbSoccerDbSettings>(Configuration.GetSection(nameof(OsdbSoccerDbSettings)));
 			services.AddSingleton(sp => sp.GetRequiredService<IOptions<OsdbSoccerDbSettings>>().Value);
 
+			// https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio
 			// The SportsService class is registered with DI to support constructor injection in consuming classes.
 			// The singleton service lifetime is most appropriate because SportsService takes a direct dependency on MongoClient.
 			// Per the official Mongo Client reuse guidelines, MongoClient should be registered in DI with a singleton service lifetime.
 			services.AddSingleton<SportsService>();
+			services.AddSingleton<Soccer.CoachesService>();
 			services.AddSingleton<Soccer.CountriesService>();
+			services.AddSingleton<Soccer.FormationsService>();
 			services.AddSingleton<Soccer.LeaguesService>();
+			services.AddSingleton<Soccer.PeopleService>();
 
 			services.AddControllers();
 		}
