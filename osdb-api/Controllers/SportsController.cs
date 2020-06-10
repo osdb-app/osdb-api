@@ -6,10 +6,10 @@ namespace OsdbApi.Controllers
 {
 	[Route("api/[controller]/[action]")]
 	[ApiController]
-	public class SportsController : ControllerBase
+	public class SportsController : OsdbControllerBase<SportsService>
 	{
 		private readonly SportsService _sportsService;
-		public SportsController(SportsService sportsService)
+		public SportsController(SportsService sportsService) : base(sportsService)
 		{
 			_sportsService = sportsService;
 		}

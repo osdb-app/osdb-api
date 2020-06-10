@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using OsdbApi.Models.DbSettings;
-using System.Collections.Generic;
 
 namespace OsdbApi.Controllers
 {
