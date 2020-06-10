@@ -7,24 +7,10 @@ namespace OsdbApi.Controllers.Soccer
 {
 	[Route("api/soccer/[controller]/[action]")]
 	[ApiController]
-	public class PeopleController : OsdbControllerBase<PeopleService>
+	public class PeopleController : SoccerControllerBase<PeopleService, Person>
 	{
 		public PeopleController(PeopleService service) : base(service)
 		{
-		}
-
-		public ActionResult<List<Person>> GetAll() => _service.Get();
-
-		// GET api/soccer/countries/getById/<string>
-		[HttpGet("{id:length(24)}")]
-		public ActionResult<Person> GetById(string id)
-		{
-			var result = _service.Get(id);
-			if (result == null)
-			{
-				return NotFound();
-			}
-			return result;
 		}
 	}
 }
